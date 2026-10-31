@@ -15,8 +15,6 @@ export const site = {
   company: "Techversol",
   location: "Karachi, Pakistan",
   email: "laibahaque14@gmail.com",
-  phoneDisplay: "+92 334 3821803",
-  phoneHref: "tel:+923343821803",
   linkedin: "https://www.linkedin.com/in/laiba-haque-779201284/",
   /**
    * PLACEHOLDER: paste your GitHub profile URL, or leave null.
