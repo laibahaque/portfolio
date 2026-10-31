@@ -46,11 +46,6 @@ export function Footer() {
               </a>
             </li>
             <li>
-              <a className="link-underline" href={site.phoneHref}>
-                {site.phoneDisplay}
-              </a>
-            </li>
-            <li>
               <a className="link-underline" href={site.linkedin} target="_blank" rel="me noreferrer noopener">
                 LinkedIn
               </a>

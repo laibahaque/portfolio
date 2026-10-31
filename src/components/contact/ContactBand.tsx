@@ -29,13 +29,7 @@ export function ContactBand() {
                 <ArrowUpRight aria-hidden="true" size={15} />
               </a>
             </div>
-            <p className="mt-6 text-sm text-muted">
-              <a className="link-underline" href={site.phoneHref}>
-                {site.phoneDisplay}
-              </a>
-              <span aria-hidden="true"> · </span>
-              {site.location}
-            </p>
+            <p className="mt-6 text-sm text-muted">{site.location}</p>
           </div>
           <div className="lg:col-span-7">
             <ContactForm />

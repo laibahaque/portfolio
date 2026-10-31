@@ -24,7 +24,6 @@ export function personJsonLd() {
         alternateName: site.name,
         jobTitle: site.role,
         email: site.email,
-        telephone: site.phoneHref.replace("tel:", ""),
         url: site.url,
         image: `${site.url}/opengraph-image`,
         address: {
