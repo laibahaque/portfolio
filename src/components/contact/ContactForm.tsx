@@ -17,7 +17,7 @@ export function ContactForm() {
     setErrors((current) => ({ ...current, [key]: undefined }));
   }
 
-  function submit(event: React.FormEvent<HTMLFormElement>) {
+  async function submit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (honey.trim()) return;
 
@@ -28,9 +28,26 @@ export function ContactForm() {
       return;
     }
 
-    const href = toMailto(fields);
-    setDraft(href);
-    window.location.href = href;
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...fields, website: honey }),
+      });
+      const payload = (await response.json()) as { ok?: boolean; mailto?: string; errors?: ContactErrors };
+      if (!response.ok && payload.errors) {
+        setErrors(payload.errors);
+        setDraft(null);
+        return;
+      }
+      const href = payload.mailto ?? toMailto(fields);
+      setDraft(href);
+      window.location.href = href;
+    } catch {
+      const href = toMailto(fields);
+      setDraft(href);
+      window.location.href = href;
+    }
   }
 
   return (

@@ -12,6 +12,19 @@
   --paper: #f7f4ee;
 }
 
+html[data-theme="dark"] {
+  --bone: #141311;
+  --bone-deep: #1d1a17;
+  --ink: #f3efe7;
+  --ink-soft: #d8d1c7;
+  --muted: #a59d93;
+  --mist: #6f6660;
+  --oxide: #e7a090;
+  --oxide-soft: #9a3426;
+  --paper: #1a1816;
+  color-scheme: dark;
+}
+
 @theme inline {
   --color-bone: var(--bone);
   --color-bone-deep: var(--bone-deep);
@@ -30,6 +43,10 @@ html {
   scroll-behavior: auto;
   background: var(--bone);
   color-scheme: light;
+}
+
+html[data-theme="dark"] .chapter-dark {
+  background-image: radial-gradient(ellipse 70% 55% at 0% 0%, rgba(231, 160, 144, 0.18), transparent 58%);
 }
 
 .splash {
@@ -277,7 +294,61 @@ section,
 .chapter-dark {
   background-color: var(--ink);
   background-image: radial-gradient(ellipse 70% 55% at 0% 0%, rgba(154, 52, 38, 0.22), transparent 58%);
+  background-position: center 0%;
+  background-size: 100% 120%;
   color: var(--bone);
+}
+
+.page-curtain {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.page-curtain-panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 51%;
+  background-color: var(--ink);
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--oxide) 22%, var(--ink)) 0%,
+    var(--ink) 28%,
+    var(--ink) 72%,
+    color-mix(in srgb, var(--bone) 8%, var(--ink)) 100%
+  );
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+.page-curtain-panel--left {
+  left: 0;
+  box-shadow: 6px 0 28px color-mix(in srgb, var(--ink) 35%, transparent);
+}
+
+.page-curtain-panel--right {
+  right: 0;
+  box-shadow: -6px 0 28px color-mix(in srgb, var(--ink) 35%, transparent);
+}
+
+.motion-canvas {
+  mix-blend-mode: soft-light;
+  will-change: transform, opacity;
+}
+
+#main {
+  transform: translate3d(0, 0, 0);
+  will-change: transform, opacity;
+}
+
+[data-reveal],
+[data-reveal-item],
+[data-fluid-target],
+[data-parallax] {
+  transform: translate3d(0, 0, 0);
 }
 
 .menu-panel {
@@ -382,6 +453,11 @@ section,
 
   .spotlight::before {
     display: none;
+  }
+
+  .motion-canvas,
+  .page-curtain {
+    display: none !important;
   }
 
   ::view-transition-old(*),

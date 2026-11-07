@@ -6,7 +6,7 @@ export function PageFrame({ children }: { children: React.ReactNode }) {
       enter={{ default: "page-enter" }}
       exit={{ default: "page-exit" }}
     >
-      <main id="main" className="flex-1">
+      <main id="main" className="motion-page flex-1">
         {children}
       </main>
     </ViewTransition>

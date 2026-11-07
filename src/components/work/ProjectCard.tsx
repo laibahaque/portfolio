@@ -13,7 +13,7 @@ export function ProjectCard({ project, index }: { project: Project; index: numbe
     <article className="h-full" data-animate="scale">
       <Tilt className="h-full" max={9}>
         <InteractiveSurface className="h-full border border-ink/10 bg-paper transition-colors duration-300 hover:border-oxide">
-          <Link href={`/work/${project.slug}`} className="group flex h-full flex-col">
+          <Link href={`/projects/${project.slug}`} className="group flex h-full flex-col">
             <ViewTransition name={`cover-${project.slug}`}>
               <ProjectCover variant={project.cover} />
             </ViewTransition>

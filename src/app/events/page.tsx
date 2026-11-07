@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ContactBand } from "@/components/contact/ContactBand";
+import { ContactCTA } from "@/components/home/ContactCTA";
 import { EventPhoto } from "@/components/events/EventPhoto";
 import { PageFrame } from "@/components/layout/PageFrame";
 import { Container } from "@/components/ui/Container";
@@ -79,14 +79,14 @@ export default function EventsPage() {
           </ol>
           <p className="mt-16 text-sm text-muted">
             Academic software is on the{" "}
-            <Link href="/work" className="link-underline text-ink">
+            <Link href="/projects" className="link-underline text-ink">
               projects page
             </Link>
             .
           </p>
         </Container>
       </section>
-      <ContactBand />
+      <ContactCTA />
     </PageFrame>
   );
 }

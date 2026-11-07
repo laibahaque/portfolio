@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ContactBand } from "@/components/contact/ContactBand";
+import { ContactCTA } from "@/components/home/ContactCTA";
 import { PageFrame } from "@/components/layout/PageFrame";
 import { Container, SectionLabel } from "@/components/ui/Container";
 import { achievements } from "@/data/achievements";
@@ -93,7 +93,7 @@ export default function AboutPage() {
                 <p>
                   The projects on this site are academic. Game work at Techversol will be added here when it can be
                   shared.{" "}
-                  <Link href="/work" className="link-underline text-ink">
+                  <Link href="/projects" className="link-underline text-ink">
                     The projects page
                   </Link>{" "}
                   is the set I can walk through today. In 2026 I also attended Women Tech Quest, hosted by 10Pearls, and
@@ -231,7 +231,7 @@ export default function AboutPage() {
           </div>
         </Container>
       </section>
-      <ContactBand />
+      <ContactCTA />
     </PageFrame>
   );
 }

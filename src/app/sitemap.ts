@@ -3,8 +3,16 @@ import { site } from "@/data/site";
 import { projects } from "@/data/projects";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = "2026-10-31";
-  const staticRoutes = ["", "/about", "/work", "/events"].map((path) => ({
+  const lastModified = "2026-11-07";
+  const staticRoutes = [
+    "",
+    "/about",
+    "/projects",
+    "/experience",
+    "/achievements",
+    "/events",
+    "/resume",
+  ].map((path) => ({
     url: `${site.url}${path || "/"}`,
     lastModified,
     changeFrequency: "monthly" as const,
@@ -12,7 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const projectRoutes = projects.map((project) => ({
-    url: `${site.url}/work/${project.slug}`,
+    url: `${site.url}/projects/${project.slug}`,
     lastModified,
     changeFrequency: "monthly" as const,
     priority: 0.7,

@@ -29,8 +29,11 @@ export const site = {
   url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://laibahaque.vercel.app").replace(/\/$/, ""),
 };
 
+/** Primary navigation — one link per plan page route (resume stays a header button). */
 export const nav = [
-  { href: "/work", label: "Projects" },
-  { href: "/events", label: "Events" },
+  { href: "/projects", label: "Projects" },
   { href: "/about", label: "About" },
+  { href: "/experience", label: "Experience" },
+  { href: "/achievements", label: "Achievements" },
+  { href: "/events", label: "Events" },
 ] as const;

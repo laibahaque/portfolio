@@ -1,3 +1,4 @@
+import { FooterContactLink } from "@/components/layout/FooterContactLink";
 import { nav, site } from "@/data/site";
 import Link from "next/link";
 
@@ -31,9 +32,12 @@ export function Footer() {
               </li>
             ))}
             <li>
-              <a href="#contact" className="link-underline">
-                Contact
-              </a>
+              <FooterContactLink />
+            </li>
+            <li>
+              <Link href="/resume" className="link-underline">
+                Resume
+              </Link>
             </li>
           </ul>
         </div>

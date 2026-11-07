@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import type Lenis from "lenis";
+import { setLenis } from "@/lib/motion/lenisStore";
 
 let smoothScroll: Lenis | null = null;
 
@@ -24,15 +25,18 @@ export function MotionRoot() {
       if (cancelled) return;
 
       gsap.registerPlugin(ScrollTrigger);
+      gsap.defaults({ force3D: true });
 
       const lenis = new LenisCtor({
-        duration: 1.1,
+        duration: 1.2,
         smoothWheel: true,
-        anchors: { offset: -88, duration: 1.15 },
+        lerp: 0.085,
+        anchors: { offset: -88, duration: 1.2 },
         autoRaf: false,
         stopInertiaOnNavigate: true,
       });
       smoothScroll = lenis;
+      setLenis(lenis);
 
       lenis.on("scroll", ScrollTrigger.update);
       const onTick = (time: number) => {
@@ -71,7 +75,10 @@ export function MotionRoot() {
         window.removeEventListener("resize", onResize);
         gsap.ticker.remove(onTick);
         lenis.destroy();
-        if (smoothScroll === lenis) smoothScroll = null;
+        if (smoothScroll === lenis) {
+          smoothScroll = null;
+          setLenis(null);
+        }
       };
       if (cancelled) removeTicker();
     })();
@@ -96,6 +103,7 @@ export function MotionRoot() {
       if (cancelled) return;
 
       gsap.registerPlugin(ScrollTrigger);
+      gsap.defaults({ force3D: true });
       await new Promise<void>((resolve) => {
         window.requestAnimationFrame(() => resolve());
       });

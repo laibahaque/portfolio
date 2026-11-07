@@ -2,7 +2,7 @@ import { site } from "@/data/site";
 import { Container } from "@/components/ui/Container";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { CopyEmail } from "@/components/contact/CopyEmail";
-import { ArrowUpRight } from "lucide-react";
+import { SocialLinks } from "@/components/ui/SocialLinks";
 
 export function ContactBand() {
   return (
@@ -24,10 +24,7 @@ export function ContactBand() {
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <CopyEmail />
-              <a href={site.linkedin} className="btn btn-secondary" target="_blank" rel="me noreferrer noopener">
-                LinkedIn
-                <ArrowUpRight aria-hidden="true" size={15} />
-              </a>
+              <SocialLinks />
             </div>
             <p className="mt-6 text-sm text-muted">{site.location}</p>
           </div>

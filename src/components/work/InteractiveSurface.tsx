@@ -15,7 +15,11 @@ export function InteractiveSurface({
   }
 
   return (
-    <div className={className ? `spotlight ${className}` : "spotlight"} onMouseMove={move}>
+    <div
+      data-fluid-target
+      className={className ? `spotlight ${className}` : "spotlight"}
+      onMouseMove={move}
+    >
       {children}
     </div>
   );

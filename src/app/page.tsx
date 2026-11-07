@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
+import { AboutPreview } from "@/components/home/AboutPreview";
+import { AchievementsPreview } from "@/components/home/AchievementsPreview";
 import { ContactBand } from "@/components/contact/ContactBand";
+import { EducationPreview } from "@/components/home/EducationPreview";
+import { ExperiencePreview } from "@/components/home/ExperiencePreview";
+import { FeaturedProjects } from "@/components/home/FeaturedProjects";
 import { Hero } from "@/components/home/Hero";
-import { ExperienceSnapshot, Expertise, EventsBand, FeaturedWork, Milestones, Practices } from "@/components/home/HomeSections";
-import { PageFrame } from "@/components/layout/PageFrame";
+import { SkillsPreview } from "@/components/home/SkillsPreview";
+import { Stats } from "@/components/home/Stats";
+import { TechStrip } from "@/components/home/TechStrip";
+import { PageContainer } from "@/components/layout/PageContainer";
 import { site } from "@/data/site";
 
 export const metadata: Metadata = {
@@ -13,15 +20,17 @@ export const metadata: Metadata = {
 
 export default function HomePage() {
   return (
-    <PageFrame>
+    <PageContainer>
       <Hero />
-      <Practices />
-      <Expertise />
-      <FeaturedWork />
-      <ExperienceSnapshot />
-      <Milestones />
-      <EventsBand />
+      <TechStrip />
+      <AboutPreview />
+      <Stats />
+      <FeaturedProjects />
+      <SkillsPreview />
+      <ExperiencePreview />
+      <EducationPreview />
+      <AchievementsPreview />
       <ContactBand />
-    </PageFrame>
+    </PageContainer>
   );
 }

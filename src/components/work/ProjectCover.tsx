@@ -15,7 +15,7 @@ export function ProjectCover({
   const color = palette[tone];
 
   return (
-    <div className="aspect-[16/10] overflow-hidden" data-cover style={{ backgroundColor: color.bg }}>
+    <div className="aspect-[16/10] overflow-hidden" data-cover data-fluid-target style={{ backgroundColor: color.bg }}>
       <svg viewBox="0 0 640 400" className="h-full w-full" role="img" aria-hidden="true">
         {variant === "queue" && <Queue color={color} />}
         {variant === "route" && <Route color={color} />}

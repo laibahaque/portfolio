@@ -1,21 +1,21 @@
 import type { Metadata } from "next";
-import { ContactBand } from "@/components/contact/ContactBand";
-import { PageFrame } from "@/components/layout/PageFrame";
+import { ContactCTA } from "@/components/home/ContactCTA";
+import { PageContainer } from "@/components/layout/PageContainer";
+import { ProjectGrid } from "@/components/projects/ProjectGrid";
 import { Container } from "@/components/ui/Container";
-import { WorkExplorer } from "@/components/work/WorkExplorer";
 import { projects } from "@/data/projects";
-import { pageMeta } from "@/lib/seo";
+import { pageMeta } from "@/lib/metadata";
 
 export const metadata: Metadata = pageMeta({
   title: "Projects",
   description:
     "Selected academic projects by Laiba Haque: a student request system, banking applications, smart transport reservation, and Arduino home automation.",
-  path: "/work",
+  path: "/projects",
 });
 
-export default function WorkPage() {
+export default function ProjectsPage() {
   return (
-    <PageFrame>
+    <PageContainer>
       <section className="chapter-dark pb-20 pt-28 md:pb-28 md:pt-36">
         <Container>
           <p className="text-[0.72rem] font-medium uppercase tracking-[0.22em] text-oxide-soft">Projects</p>
@@ -31,10 +31,10 @@ export default function WorkPage() {
       </section>
       <section className="bg-bone py-16 md:py-24">
         <Container>
-          <WorkExplorer projects={projects} />
+          <ProjectGrid projects={projects} />
         </Container>
       </section>
-      <ContactBand />
-    </PageFrame>
+      <ContactCTA />
+    </PageContainer>
   );
 }

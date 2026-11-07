@@ -70,7 +70,7 @@ export function applyPageMotion(gsap: Gsap, ScrollTrigger: ScrollTriggerStatic) 
 
   const curtain = () => document.documentElement.dataset.splash === "done";
 
-  const enter = (targets: HTMLElement[], trigger: HTMLElement, stagger = 0, distance = 28) => {
+  const enter = (targets: HTMLElement[], trigger: HTMLElement, stagger = 0, distance = 50) => {
     if (!targets.length) return;
     const mixed = targets.some((item) => (item.dataset.animate || "") !== (targets[0].dataset.animate || ""));
     if (mixed) {
@@ -150,25 +150,25 @@ export function applyPageMotion(gsap: Gsap, ScrollTrigger: ScrollTriggerStatic) 
       items.forEach((item) => {
         item.dataset.motion = "on";
       });
-      enter(items, group, 0.07, 32);
+      enter(items, group, 0.05, 50);
     });
 
     main.querySelectorAll<HTMLElement>("[data-reveal]").forEach((element) => {
       if (seen(element) || element.closest("[data-reveal-group]")) return;
       element.dataset.motion = "on";
-      enter([element], element, 0, 32);
+      enter([element], element, 0, 50);
     });
 
     main.querySelectorAll<HTMLElement>("li > article").forEach((article) => {
       if (seen(article) || article.closest("[data-reveal], [data-reveal-item]")) return;
       article.dataset.motion = "block";
-      enter([article], article, 0, 36);
+      enter([article], article, 0, 50);
     });
 
     main.querySelectorAll<HTMLElement>("aside").forEach((aside) => {
       if (seen(aside) || aside.querySelector("canvas, .hero-in") || aside.closest(handled)) return;
       aside.dataset.motion = "block";
-      enter([aside], aside, 0, 24);
+      enter([aside], aside, 0, 40);
     });
 
     main.querySelectorAll<HTMLElement>("[data-cover]").forEach((cover) => {
@@ -205,6 +205,25 @@ export function applyPageMotion(gsap: Gsap, ScrollTrigger: ScrollTriggerStatic) 
       }
     });
 
+    main.querySelectorAll<HTMLElement>(".chapter-dark, [data-section-parallax]").forEach((section) => {
+      if (section.dataset.motion === "section-parallax") return;
+      section.dataset.motion = "section-parallax";
+      gsap.fromTo(
+        section,
+        { backgroundPositionY: "0%" },
+        {
+          backgroundPositionY: "22%",
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1.2,
+          },
+        },
+      );
+    });
+
     main.querySelectorAll<HTMLElement>("[data-parallax]").forEach((element) => {
       if (element.dataset.motion === "parallax") return;
       element.dataset.motion = "parallax";
@@ -235,7 +254,7 @@ export function applyPageMotion(gsap: Gsap, ScrollTrigger: ScrollTriggerStatic) 
       items.forEach((item) => {
         item.dataset.motion = "on";
       });
-      enter(items, list, 0.06, 22);
+      enter(items, list, 0.05, 50);
     });
 
     const chips = [...main.querySelectorAll<HTMLElement>("a.shrink-0")].filter((chip) => !seen(chip));
@@ -243,13 +262,13 @@ export function applyPageMotion(gsap: Gsap, ScrollTrigger: ScrollTriggerStatic) 
       chips.forEach((chip) => {
         chip.dataset.motion = "on";
       });
-      enter(chips, chips[0].parentElement ?? chips[0], 0.04, 16);
+      enter(chips, chips[0].parentElement ?? chips[0], 0.05, 40);
     }
 
     main.querySelectorAll<HTMLElement>("p, blockquote, dd").forEach((copy) => {
       if (seen(copy) || copy.closest(handled) || copy.closest("a, button, h1, h2, h3")) return;
       copy.dataset.motion = "on";
-      enter([copy], copy, 0, 22);
+      enter([copy], copy, 0, 50);
     });
 
     main.querySelectorAll<HTMLElement>("span.h-px").forEach((rule) => {
@@ -304,7 +323,7 @@ export function applyPageMotion(gsap: Gsap, ScrollTrigger: ScrollTriggerStatic) 
         buttons.forEach((button) => {
           button.dataset.motion = "on";
         });
-        enter(buttons, filters, 0.05, 16);
+        enter(buttons, filters, 0.05, 40);
       }
     }
 
@@ -316,7 +335,7 @@ export function applyPageMotion(gsap: Gsap, ScrollTrigger: ScrollTriggerStatic) 
         links.forEach((link) => {
           link.dataset.motion = "on";
         });
-        enter(links, more, 0.08, 20);
+        enter(links, more, 0.05, 50);
       }
     }
 
@@ -331,11 +350,12 @@ export function applyPageMotion(gsap: Gsap, ScrollTrigger: ScrollTriggerStatic) 
       const hold = !curtain() && visible;
       const tween = gsap.fromTo(
         rows,
-        { y: 18 },
+        { y: 50, autoAlpha: 0 },
         {
           y: 0,
-          duration: 0.9,
-          stagger: 0.08,
+          autoAlpha: 1,
+          duration: 0.95,
+          stagger: 0.05,
           ease: "expo.out",
           paused: hold,
           scrollTrigger: visible ? undefined : { trigger: form, start: "top 88%", once: true },
@@ -349,7 +369,7 @@ export function applyPageMotion(gsap: Gsap, ScrollTrigger: ScrollTriggerStatic) 
       const columns = [...footer.querySelectorAll<HTMLElement>(":scope > div > div")];
       if (columns.length) {
         footer.dataset.motion = "on";
-        enter(columns, footer, 0.08, 24);
+        enter(columns, footer, 0.05, 50);
       }
     }
 
